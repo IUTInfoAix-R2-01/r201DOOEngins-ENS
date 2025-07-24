@@ -1,0 +1,1 @@
+(SIMULATION) Cet engin flottant est propulsé par un moteur Thermique. Il consomme 2042.2 énergie.

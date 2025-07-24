@@ -20,7 +20,7 @@ public abstract class Carburant {
 	    return "non-carburant";
 	}
     }
- 
+
     public static double getConso(int carbu) {
 	switch (carbu % nbCarburants) {
 	case ID_GAZOLE:
@@ -33,4 +33,5 @@ public abstract class Carburant {
 	    return consoParDefaut;
 	}
     }
+static public void main() {System.out.println("toto");}
 }

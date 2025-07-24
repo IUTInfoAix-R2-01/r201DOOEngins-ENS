@@ -64,6 +64,27 @@ public class ExamEnginsTest {
     }
 
     @Test
+    public void testEoliennetoString() {
+        Eolienne propulsion = new Eolienne();
+        String valAttendue = "Eolienne []";
+        assertEquals(valAttendue, propulsion.toString());
+    }
+
+    @Test
+    public void testElectriqueToString() {
+        Electrique propulsion = new Electrique(49.3);
+        String ValAttendue = "Electrique [masse=49.3]";
+        assertEquals(ValAttendue, propulsion.toString());
+    }
+
+    @Test
+    public void testThermiqueToString() {
+        Thermique propulsion = new Thermique(49.3, Carburant.ID_GAZOLE);
+        String ValAttendue = "Thermique [masse=49.3, carburant=gazole]";
+        assertEquals(ValAttendue, propulsion.toString());
+    }
+
+    @Test
     public void testConstructionPropulsionThermiqueEssenceCarburant() {
 	double masseAttendue = 13.5;
 	int carburantAttendu = Carburant.ID_ESSENCE;
@@ -139,47 +160,26 @@ public class ExamEnginsTest {
 	assertEquals(valAttendue, valObservee, 0.0);
     }
 
-    @Test
-    public void testEoliennetoString() {
-	Eolienne propulsion = new Eolienne();
-	String valAttendue = "Eolienne []";
-	assertEquals(valAttendue, propulsion.toString());
-    }
-
-    @Test
-    public void testElectriqueToString() {
-	Electrique propulsion = new Electrique(49.3);
-	String ValAttendue = "Electrique [masse=49.3]";
-	assertEquals(ValAttendue, propulsion.toString());
-    }
-
-    @Test
-    public void testThermiqueToString() {
-	Thermique propulsion = new Thermique(49.3, Carburant.ID_GAZOLE);
-	String ValAttendue = "Thermique [masse=49.3, carburant=gazole]";
-	assertEquals(ValAttendue, propulsion.toString());
-    }
-
     /* Engin */
     @Test
     public void testIdEnginRoulantThermique() {
-	int valObserveeDebut = Engin.getDernierId();
-	Engin engin = new Roulant(new Thermique(42.0, Carburant.ID_ESSENCE));
-	engin = new Roulant(new Thermique(42.0, Carburant.ID_ESSENCE));
-	int valAttendue = 2;
-	int valObservee = engin.getId() - valObserveeDebut;
-	assertEquals(valAttendue, valObservee);
+        int valObserveeDebut = Engin.getDernierId();
+        Engin engin = new Roulant(new Thermique(42.0, Carburant.ID_ESSENCE));
+        engin = new Roulant(new Thermique(42.0, Carburant.ID_ESSENCE));
+        int valAttendue = 2;
+        int valObservee = engin.getId() - valObserveeDebut;
+        assertEquals(valAttendue, valObservee);
     }
 
     @Test
     public void testIdEnginFlottantElectrique() {
-	int valObserveeDebut = Engin.getDernierId();
-	Engin engin = new Roulant(new Thermique(42.0, Carburant.ID_ESSENCE));
-	engin = new Roulant(new Thermique(42.0, Carburant.ID_ESSENCE));
-	engin = new Flottant(new Electrique(42.0));
-	int valAttendue = 3;
-	int valObservee = engin.getId() - valObserveeDebut;
-	assertEquals(valAttendue, valObservee);
+        int valObserveeDebut = Engin.getDernierId();
+        Engin engin = new Roulant(new Thermique(42.0, Carburant.ID_ESSENCE));
+        engin = new Roulant(new Thermique(42.0, Carburant.ID_ESSENCE));
+        engin = new Flottant(new Electrique(42.0));
+        int valAttendue = 3;
+        int valObservee = engin.getId() - valObserveeDebut;
+        assertEquals(valAttendue, valObservee);
     }
 
     @Test
@@ -218,8 +218,7 @@ public class ExamEnginsTest {
 	String valAttendue = String.format(
 		"(SIMULATION) Cet engin flottant est propulsé par un moteur Thermique. Il consomme %.1f énergie.",
 		valEnergie);
-//	engin.conduire();
-	try {
+	label1: try {
 	    File sortieFic = new File("tmpOut.txt");
 	    PrintStream sortiePrintStream = new PrintStream(sortieFic);
 	    System.setOut(sortiePrintStream);
@@ -236,7 +235,7 @@ public class ExamEnginsTest {
 	    e.printStackTrace();
 	} catch (IOException e) {
 	    // TODO Auto-generated catch block
-	    e.printStackTrace();
+	    label2: e.printStackTrace();
 	}
     }
 
